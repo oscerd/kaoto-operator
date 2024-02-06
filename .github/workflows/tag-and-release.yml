@@ -27,7 +27,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           custom_tag: ${{ github.event.inputs.tag_version }}
           create_annotated_tag: true
-          tag_prefix: ""
+          tag_prefix: "v"
 
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
