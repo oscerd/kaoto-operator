@@ -33,10 +33,23 @@ jobs:
         run: make bundle
       - name: Commit 
         run: |
-          git config --global user.name 'Andrea'
+          git config --global user.name 'Andrea Cosentino'
           git config --global user.email 'oscerd@users.noreply.github.com'
           git commit -am "Automated commit"
           git push
+
+      - name: "🔧 Tar bundle"
+        shell: bash
+        run: |
+          tar -czf ${{ runner.temp }}/bundle.tgz -C bundle .
+          ls -lh ${{ runner.temp }}/bundle.tgz
+
+      - name: "🔧 Persist Bundle"
+        uses: actions/upload-artifact@v4
+        with:
+          name: "bundle-${{ github.event.inputs.operator_version }}"
+          path: "${{ runner.temp }}/bundle-${{ github.event.inputs.operator_version }}"
+          retention-days: 1
 
   tag-and-release:
     permissions:
@@ -46,6 +59,12 @@ jobs:
       - version-update
     steps:
       - uses: actions/checkout@v4
+
+      - name: "🛰️ Download UI Dist"
+        uses: actions/download-artifact@v4
+        with:
+          name: bundle-${{ github.event.inputs.operator_version }}
+          path: "${{ runner.temp }}"
 
       - name: Bump version and push tag
         id: tag_version
@@ -61,3 +80,4 @@ jobs:
         with:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
+          artifacts: "${{ runner.temp }}/bundle-${{ github.event.inputs.operator_version }}" 
