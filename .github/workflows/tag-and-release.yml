@@ -85,4 +85,4 @@ jobs:
         with:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
-          artifacts: "${{ runner.temp }}/bundle-${{ github.event.inputs.operator_version }}" 
+          artifacts: "${{ runner.temp }}/bundle-${{ github.event.inputs.operator_version }}.tgz" 
