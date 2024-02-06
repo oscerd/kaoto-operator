@@ -33,10 +33,15 @@ jobs:
         run: make bundle
       - name: Commit 
         run: |
-          git config --global user.name 'Andrea Cosentino'
-          git config --global user.email 'oscerd@users.noreply.github.com'
-          git commit -am "Automated commit"
-          git push
+          if [[ `git status --porcelain` ]]; then
+            echo "OK: Changes detected."
+            git config --global user.name 'Andrea Cosentino'
+            git config --global user.email 'oscerd@users.noreply.github.com'
+            git commit -am "Automated commit"
+            git push
+          else
+            echo "WARNING: No changes were detected."
+          fi
 
       - name: "🔧 Tar bundle"
         shell: bash
