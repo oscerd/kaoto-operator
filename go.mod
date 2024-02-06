@@ -3,9 +3,9 @@ module github.com/kaotoIO/kaoto-operator
 go 1.21
 
 require (
-	github.com/evanphx/json-patch v5.8.1+incompatible
+	github.com/evanphx/json-patch v5.9.0+incompatible
 	github.com/go-logr/logr v1.4.1
-	github.com/onsi/gomega v1.31.0
+	github.com/onsi/gomega v1.31.1
 	github.com/openshift/api v0.0.0-20231122212525-40c7e9bd69ba
 	github.com/openshift/client-go v0.0.0-20231121143148-910ca30a1a9a
 	github.com/pkg/errors v0.9.1
@@ -16,7 +16,7 @@ require (
 	k8s.io/api v0.29.1
 	k8s.io/apimachinery v0.29.1
 	k8s.io/client-go v0.29.1
-	k8s.io/klog/v2 v2.120.0
+	k8s.io/klog/v2 v2.120.1
 	sigs.k8s.io/controller-runtime v0.17.0
 	sigs.k8s.io/structured-merge-diff/v4 v4.4.1
 )
