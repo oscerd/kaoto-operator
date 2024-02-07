@@ -3,6 +3,5 @@
 resources:
 - bases/kaoto-operator.clusterserviceversion.yaml
 - ../default
-- ../rbac
 - ../samples
 - ../scorecard
