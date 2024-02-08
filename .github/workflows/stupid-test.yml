@@ -38,7 +38,5 @@ jobs:
 
           git checkout -b ${BRANCH_NAME}
 
-          cd ../
-
-          tree
+          cat ../.github/operatorhub/community-operators
 
