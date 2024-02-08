@@ -1,0 +1,41 @@
+name: 🏷️ Tree
+on:
+  workflow_dispatch:
+
+jobs:
+          
+  prepare-k8s-operator-branch:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      
+      - name: "Checkout k8s-operator project"
+        uses: actions/checkout@v4
+        with:
+          repository: kaotoIO/community-operators
+          token: ${{ secrets.PR_TOKEN }}
+          ref: main
+          
+      - name: "Create, prepare branch and open PR for k8s-operator"
+        env:
+          BRANCH_NAME: "kaoto-operator.${{ github.event.inputs.operator_version }}"
+        run: |
+          
+          echo ""
+          echo "branch        : $BRANCH_NAME"
+          echo ""
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+          git remote add upstream https://github.com/k8s-operatorhub/community-operators.git
+          git pull --rebase upstream main
+
+          git checkout -b ${BRANCH_NAME}
+
+          git add operators/kaoto-operator/0.10.0
+          git commit -m "operator kaoto-operator (0.10.0)"
+          
+          tree
+
