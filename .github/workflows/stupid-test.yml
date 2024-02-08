@@ -19,7 +19,7 @@ jobs:
           
       - name: "Create, prepare branch and open PR for k8s-operator"
         env:
-          BRANCH_NAME: "kaoto-operator.${{ github.event.inputs.operator_version }}"
+          BRANCH_NAME: "kaoto-operator-test"
         run: |
           
           echo ""
