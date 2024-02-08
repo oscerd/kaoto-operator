@@ -9,7 +9,9 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      
+      - name: "Checkout operator"
+        uses: actions/checkout@v4
+          
       - name: "Checkout k8s-operator project"
         uses: actions/checkout@v4
         with:
