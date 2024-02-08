@@ -33,9 +33,6 @@ jobs:
           git pull --rebase upstream main
 
           git checkout -b ${BRANCH_NAME}
-
-          git add operators/kaoto-operator/0.10.0
-          git commit -m "operator kaoto-operator (0.10.0)"
           
           tree
 
