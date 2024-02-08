@@ -16,12 +16,14 @@ jobs:
           repository: kaotoIO/community-operators
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: main
+          path: community-operators
           
       - name: "Create, prepare branch and open PR for k8s-operator"
         env:
           BRANCH_NAME: "kaoto-operator-test"
         run: |
-          
+
+          cd community-operators/
           echo ""
           echo "branch        : $BRANCH_NAME"
           echo ""
@@ -34,7 +36,7 @@ jobs:
 
           git checkout -b ${BRANCH_NAME}
 
-          cd ../../../
+          cd ../
 
           tree
 
